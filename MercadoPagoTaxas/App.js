@@ -1,21 +1,9 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
-import {
-	Container,
-	Button,
-	Input,
-	Form,
-	Item,
-	Label,
-	Icon,
-	Thumbnail,
-	Content,
-	Card,
-	CardItem
-} from "native-base";
-
+import { Button, Thumbnail, Icon } from "native-base";
+import { TextInput, DefaultTheme } from "react-native-paper";
+import TextInputMask from "react-native-text-input-mask";
 const tec = require("./images/tecStore.png");
 
 const taxaCredito = 5.31 / 100;
@@ -102,112 +90,165 @@ export default class App extends Component {
 	render() {
 		return (
 			<KeyboardAwareScrollView>
-				<Container>
-					<Content>
-						<Thumbnail
-							source={tec}
-							style={{
-								alignSelf: "center",
-								margin: 10,
-								width: 100,
-								height: 100
+				<View style={styles.container}>
+					<View style={styles.thumbView}>
+						<Thumbnail source={tec} style={styles.thumb} />
+					</View>
+
+					<View
+						style={{
+							flexDirection: "row",
+							alignContent: "center",
+							justifyContent: "center"
+						}}
+					>
+						<TextInput
+							theme={{
+								dark: true,
+								colors: {
+									...DefaultTheme.colors,
+									primary: "black",
+									accent: "red"
+								}
 							}}
+							label="Valor à Vista"
+							onChangeText={text =>
+								this.setState(
+									{
+										text
+									},
+									() => this._onPress()
+								)
+							}
+							value={this.state.text}
+							keyboardType="numeric"
+							returnKeyType="done"
+							onSubmitEditing={() => this._onPress()}
+							mode="outlined"
+							style={styles.input}
 						/>
-					</Content>
-
-					<Content>
-						<Form>
-							<Item floatingLabel>
-								<Label> Valor do produto a vista</Label>
-								<Input
-									onChangeText={text => this.setState({ text })}
-									value={this.state.text}
-									keyboardType="numeric"
-								/>
-							</Item>
-						</Form>
-
+						{/*
 						<Button
 							style={styles.okButton}
 							rounded
 							success
 							onPress={() => this._onPress()}
 						>
-							<Icon name="checkmark" />
+							<Text style={styles.xButtonText}> Ok</Text>
 						</Button>
-					</Content>
-					<Content>
-						<Card>
-							<CardItem>
-								<Text>
-									Valor a colocar na maquina:{" "}
-									{this.state.valorColocar.toFixed(2)}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									1x {this.state.uma} - {this.state.uma}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									2x: {(this.state.duas / 2).toFixed(2)} - Total:{" "}
-									{this.state.duas}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									3x {(this.state.tres / 3).toFixed(2)} - {this.state.tres}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									4x {(this.state.quatro / 4).toFixed(2)} - {this.state.quatro}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									5x {(this.state.cinco / 5).toFixed(2)} - {this.state.cinco}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									6x {(this.state.seis / 6).toFixed(2)} - {this.state.seis}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									7x {(this.state.sete / 7).toFixed(2)} - {this.state.sete}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									8x {(this.state.oito / 8).toFixed(2)} - {this.state.oito}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									9x {(this.state.nove / 9).toFixed(2)} - {this.state.nove}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									10x {(this.state.dez / 10).toFixed(2)} - {this.state.dez}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									11x {(this.state.onze / 11).toFixed(2)} - {this.state.onze}
-								</Text>
-							</CardItem>
-							<CardItem>
-								<Text>
-									12x {(this.state.doze / 12).toFixed(2)} - {this.state.doze}
-								</Text>
-							</CardItem>
-						</Card>
-					</Content>
-				</Container>
+            */}
+					</View>
+					<View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>1x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.uma / 1).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.uma}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>2x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.duas / 2).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.duas}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>3x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.tres / 3).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.tres}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>4x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.quatro / 4).toFixed(2)}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.quatro}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>5x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.cinco / 5).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.cinco}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>6x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.seis / 6).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.seis}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>7x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.sete / 7).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.sete}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>8x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.oito / 8).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.oito}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>9x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.nove / 9).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.nove}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>10x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.dez / 10).toFixed(2)}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.dez}</Text>
+						</View>
+						<View style={styles.lista}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>11x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.onze / 11).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.onze}</Text>
+						</View>
+						<View style={styles.listaFinal}>
+							<Button rounded dark style={styles.xButton}>
+								<Text style={styles.xButtonText}>12x</Text>
+							</Button>
+							<Text style={styles.texto}>
+								R$ {(this.state.doze / 12).toFixed(2)}{" "}
+							</Text>
+							<Text style={styles.texto2}>R$ {this.state.doze}</Text>
+						</View>
+					</View>
+				</View>
 			</KeyboardAwareScrollView>
 		);
 	}
@@ -216,22 +257,82 @@ export default class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		//justifyContent: "center",
-		alignItems: "center"
-		//backgroundColor: "#F5FCFF"
+		padding: 5
 	},
-	welcome: {
+	thumbView: {
+		position: "relative",
+		alignItems: "center"
+	},
+	thumb: {
+		alignSelf: "center",
+		margin: 3,
+		width: 140,
+		height: 140
+	},
+	input: {
 		fontSize: 20,
 		textAlign: "center",
-		margin: 10
+		margin: 10,
+		width: 250
 	},
 	okButton: {
 		textAlign: "center",
 		alignContent: "center",
 		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
+		width: 50,
+		height: 50,
+		margin: 10,
+		marginTop: 20
 	},
 	texto: {
-		alignContent: "space-between"
+		justifyContent: "center",
+		alignItems: "center",
+		marginTop: 15,
+		marginLeft: 10
+	},
+	texto2: {
+		flex: 1,
+		textAlign: "right",
+		alignSelf: "stretch",
+		marginTop: 8,
+		marginHorizontal: 20,
+		fontWeight: "bold",
+		fontSize: 20
+	},
+	lista: {
+		height: 50,
+		//alignItems: "center",
+		//alignContent: "center",
+		borderRadius: 20,
+		borderLeftWidth: 2,
+		borderTopWidth: 2,
+		borderRightWidth: 2,
+		flexDirection: "row"
+	},
+	listaFinal: {
+		height: 50,
+		//alignItems: "center",
+		//alignContent: "center",
+		borderRadius: 20,
+		borderWidth: 2,
+		flexDirection: "row"
+	},
+	xButton: {
+		width: 35,
+		height: 35,
+		margin: 5,
+		marginTop: 7,
+		textAlignVertical: "center",
+		alignItems: "center",
+		justifyContent: "center"
+	},
+	xButtonText: {
+		fontWeight: "bold",
+		color: "white",
+		shadowOffset: {
+			width: 0,
+			height: 0
+		}
 	}
 });
