@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Button, Thumbnail, Icon } from "native-base";
 import { TextInput, DefaultTheme } from "react-native-paper";
 import TextInputMask from "react-native-text-input-mask";
-const tec = require("./images/tecStore.png");
+const lojinha = require("./images/lojinhaIcon.png");
 
 const taxaCredito = 5.31 / 100;
 const taxa2 = 4.09 / 100;
@@ -92,7 +92,7 @@ export default class App extends Component {
 			<KeyboardAwareScrollView>
 				<View style={styles.container}>
 					<View style={styles.thumbView}>
-						<Thumbnail source={tec} style={styles.thumb} />
+						<Thumbnail source={lojinha} style={styles.thumb} />
 					</View>
 
 					<View
