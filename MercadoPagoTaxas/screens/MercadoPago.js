@@ -91,8 +91,8 @@ export default class MercadoPago extends Component {
 		return (
 			<View>
 
-			
-			<ScrollView>
+
+				<ScrollView>
 					<View style={styles.container}>
 						<View style={styles.thumbView}>
 							<Thumbnail source={lojinha} style={styles.thumb} />
@@ -105,6 +105,26 @@ export default class MercadoPago extends Component {
 								justifyContent: "center"
 							}}
 						>
+						<View>
+							<Button
+							style={styles.xButton}
+								onPress={() => {
+									captureScreen({
+										format: "jpg",
+										quality: 0.8
+									})
+										.then(
+											uri => console.log("Image saved to", uri),
+											error => console.error("Oops, snapshot failed", error)
+										);
+								}}
+								title="capture"
+								color="#841584"
+								accessibilityLabel="Capture"
+							></Button>
+
+
+						</View>
 							<TextInput
 								theme={{
 									dark: true,
@@ -242,7 +262,7 @@ export default class MercadoPago extends Component {
 							</View>
 						</View>
 					</View>
-			</ScrollView>
+				</ScrollView>
 			</View>
 		);
 	}

@@ -7,6 +7,7 @@ import SuperGet from './screens/SuperGet'
 
 import { Icon } from "native-base";
 import MPicon from "./TabNavStyles/MPicon";
+import SUicon from "./TabNavStyles/SUicon"
 
 class App extends React.Component {
 	render() {
@@ -22,16 +23,23 @@ class App extends React.Component {
 
 
 const TabNavigator = createBottomTabNavigator({
-	"Mercado Pago": { 
-		screen: MercadoPago, 
+	"Mercado Pago": {
+		screen: MercadoPago,
 		navigationOptions: () => ({
-			tabBarIcon: ({tintColor}) => (
-				<MPicon/>
+			tabBarIcon: ({ tintColor }) => (
+				<MPicon />
 			)
 		}
 		)
 	},
-	"Icon": { screen: MPicon }
+	"SumUp": {
+		screen: SumUp,
+		navigationOptions: () => ({
+			tabBarIcon: ({ tintColor }) => (
+				<SUicon />
+			)
+		})
+	}
 },
 );
 
